@@ -153,9 +153,9 @@ router.post("/display/products/:status", auth, async (req, res) => {
 //== edit without auth==//
 router.patch("/edit/:id", async (req, res) => {
   try {
-    const products = await Product.find({ _id: req.body.id });
+    const products = await Product.find({ _id: req.params.id });
     await Product.updateOne(
-      { _id: req.body.id },
+      { _id: req.params.id },
       {
         $set: {
           title: req.body.title || products.title,
@@ -228,6 +228,29 @@ router.patch("/edit/:id", async (req, res) => {
 //       return res.status(401).json({
 //         status: "error",
 //         message: "Unauthorised to edit.",
+//       });
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(401).json({
+//       status: "error",
+//       message: "An error occured.",
+//     });
+//   }
+// });
+
+// router.delete("/delete/:title", async (req, res) => {
+//   console.log("DELETE /delete path activated");
+
+//   try {
+//     if (Product) {
+//       await Product.deleteOne({ title: req.params.title });
+//       res.json({ status: "ok!", message: "Product deleted." });
+//     } else {
+//       console.log(error);
+//       return res.status(401).json({
+//         status: "error",
+//         message: "Unauthorised to delete.",
 //       });
 //     }
 //   } catch (error) {

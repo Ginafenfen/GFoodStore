@@ -1,41 +1,34 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import ReactContext from "../../context/react-context";
 
 const EditProductModal = () => {
-  const [newTitle, setNewTitle] = useState("");
-  const [newImg, setNewImg] = useState("");
-  const [newDesc, setNewDesc] = useState("");
-  const [newPrice, setNewPrice] = useState("");
-  const { id } = useParams();
+  const reactCtx = useContext(ReactContext);
 
-  const editBtn = (e) => {
-    e.preventDefault();
+  const handleEdit = (id) => {
+    console.log("Edit btn clicked in parent: Test.js");
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-      // id: "62e520cf859f0b3464336c96",
-      title: newTitle,
-      desc: newDesc,
-      price: newPrice,
-      img: newImg,
+      id: "62eb6a3615dec4c1b0eb85a8",
+      title: reactCtx.newTitle,
+      desc: reactCtx.newDesc,
+      price: reactCtx.newPrice,
+      img: reactCtx.newImg,
     });
-
     var requestOptions = {
       method: "PATCH",
       headers: myHeaders,
       body: raw,
       redirect: "follow",
     };
-
     fetch(`http://localhost:5001/products/edit/${id}`, requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
-
       .catch((error) => console.log("error", error));
   };
-  // console.log(id);
 
   //   fetch(`http://localhost:5001/products/edit`, requestOptions)
   //     .then((response) => response.text())
@@ -111,7 +104,7 @@ const EditProductModal = () => {
                       className="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
                       name="comment"
                       placeholder="New title here..."
-                      onChange={(e) => setNewTitle(e.target.value)}
+                      onChange={(e) => reactCtx.setNewTitle(e.target.value)}
                     ></textarea>
                   </div>
                 </form>
@@ -126,7 +119,7 @@ const EditProductModal = () => {
                       className="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
                       name="comment"
                       placeholder="New title here..."
-                      onChange={(e) => setNewDesc(e.target.value)}
+                      onChange={(e) => reactCtx.setNewDesc(e.target.value)}
                     ></textarea>
                   </div>
                 </form>
@@ -142,7 +135,7 @@ const EditProductModal = () => {
                       className="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
                       name="comment"
                       placeholder="New title here..."
-                      onChange={(e) => setNewImg(e.target.value)}
+                      onChange={(e) => reactCtx.setNewImg(e.target.value)}
                     ></textarea>
                   </div>
                 </form>
@@ -158,7 +151,7 @@ const EditProductModal = () => {
                         className="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
                         name="comment"
                         placeholder="New description here..."
-                        onChange={(e) => setNewPrice(e.target.value)}
+                        onChange={(e) => reactCtx.setNewPrice(e.target.value)}
                       ></textarea>
                     </div>
                   </form>
@@ -167,7 +160,7 @@ const EditProductModal = () => {
               </div>
               <button
                 className="px-3 py-2 mr-2 text-sm text-blue-100 bg-blue-600 rounded  font-medium"
-                onClick={editBtn}
+                onClick={() => handleEdit(id)}
               >
                 Save
               </button>
