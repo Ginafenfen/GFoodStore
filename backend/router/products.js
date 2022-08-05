@@ -65,32 +65,32 @@ router.get("/displayAll", async (req, res) => {
 });
 
 //==diplay status==//
-router.post("/display/products/:status", auth, async (req, res) => {
-  console.log(req.body.boardId);
-  try {
-    const board = await Product.findOne(
-      {
-        _id: req.body.boardId,
-      }
-      //   {
-      //     activeCards: { status: { $eq: req.params.status } } ,
-      //   }
-    );
-    if (!board) {
-      return res
-        .status(404)
-        .json({ status: "error", message: "board does not exist" });
-    }
-    const filteredArray = board.activeCards.filter(
-      (card) => card.status === req.params.status
-    );
+// router.post("/display/products/:status", auth, async (req, res) => {
+//   console.log(req.body.boardId);
+//   try {
+//     const board = await Product.findOne(
+//       {
+//         _id: req.body.boardId,
+//       }
+//       //   {
+//       //     activeCards: { status: { $eq: req.params.status } } ,
+//       //   }
+//     );
+//     if (!board) {
+//       return res
+//         .status(404)
+//         .json({ status: "error", message: "board does not exist" });
+//     }
+//     const filteredArray = board.activeCards.filter(
+//       (card) => card.status === req.params.status
+//     );
 
-    res.json(filteredArray);
-  } catch (err) {
-    console.log("GET /display/cards/:status", err);
-    res.status(400).json({ status: "error", message: "an error has occurred" });
-  }
-});
+//     res.json(filteredArray);
+//   } catch (err) {
+//     console.log("GET /display/cards/:status", err);
+//     res.status(400).json({ status: "error", message: "an error has occurred" });
+//   }
+// });
 
 //==store the image==//
 // const storage = multer.diskStorage({
@@ -293,13 +293,13 @@ router.delete("/delete/:id", async (req, res) => {
 // });
 
 //== change status to "cart"==//
-router.patch("/addtocart", async (req, res) => {
+router.patch("/addtocart/:id", async (req, res) => {
   const response = await Product.updateOne(
     {
-      title: req.body.title,
+      _id: req.params.id,
     },
     {
-      status: req.body.status,
+      status: "cart",
     }
   );
 
@@ -309,9 +309,17 @@ router.patch("/addtocart", async (req, res) => {
 });
 
 //==print all status: cart==//
-router.post("/cartlist", async (req, res) => {
-  const allCart = await Product.find({ status: "cart" });
-  res.json(allCart);
+router.get("/cart", async (req, res) => {
+  try {
+    const allCart = await Product.find({ status: "cart" }).select(selection);
+    res.json(allCart);
+    console.log("updated");
+  } catch (error) {
+    console.log(`GET /displayAll ${error}`);
+    res
+      .status(400)
+      .json({ status: "error", message: "failed to display all products" });
+  }
 });
 
 //==update status to complete==//
@@ -333,6 +341,26 @@ router.patch("/completed", async (req, res) => {
 router.post("/completedlist", async (req, res) => {
   const allCompletedList = await Product.find({ status: "completed" });
   res.json(allCompletedList);
+});
+
+router.patch("/favourite", async (req, res) => {
+  // both admin and users can update listing favourite count
+  const newListingData = await Listing.findOneAndUpdate(
+    { _id: req.body.id },
+    { $inc: { favouritesCount: +1 } },
+    { new: true }
+  );
+  res.json(newListingData);
+});
+
+// UPDATE LISTING ARCHIVE STATE
+router.patch("/archive", async (req, res) => {
+  const newListingArchive = await Listing.findOneAndUpdate(
+    { _id: req.body.id },
+    { isArchive: req.body.isArchive },
+    { new: true }
+  );
+  res.json(newListingArchive);
 });
 
 module.exports = router;

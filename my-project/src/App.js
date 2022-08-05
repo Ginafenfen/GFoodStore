@@ -20,6 +20,9 @@ function App() {
   const [newPrice, setNewPrice] = useState("");
 
   const [products, setProducts] = useState([]);
+
+  const [carts, setCarts] = useState([]);
+
   return (
     <div>
       <ReactContext.Provider
@@ -34,6 +37,8 @@ function App() {
           setNewPrice,
           products,
           setProducts,
+          carts,
+          setCarts,
         }}
       >
         <NavBar />

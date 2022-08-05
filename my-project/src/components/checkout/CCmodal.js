@@ -15,7 +15,7 @@ const CCmodal = () => {
       <div
         className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
         id="CCmodal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
@@ -33,7 +33,7 @@ const CCmodal = () => {
                 width="52"
                 height="52"
                 viewBox="0 0 24 24"
-                stroke-width="1"
+                strokeWidth="1"
                 stroke="currentColor"
                 fill="none"
                 // stroke-linecap="round"
@@ -50,7 +50,7 @@ const CCmodal = () => {
               Enter Billing Details
             </h1>
             <label
-              for="name"
+              htmlFor="name"
               className="text-gray-800 text-sm font-bold leading-tight tracking-normal"
             >
               Owner Name
@@ -61,7 +61,7 @@ const CCmodal = () => {
               placeholder="James"
             />
             <label
-              for="email2"
+              htmlFor="email2"
               className="text-gray-800 text-sm font-bold leading-tight tracking-normal"
             >
               Card Number
@@ -74,7 +74,7 @@ const CCmodal = () => {
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   fill="none"
                   // stroke-linecap="round"
@@ -94,7 +94,7 @@ const CCmodal = () => {
               />
             </div>
             <label
-              for="expiry"
+              htmlFor="expiry"
               className="text-gray-800 text-sm font-bold leading-tight tracking-normal"
             >
               Expiry Date
@@ -107,7 +107,7 @@ const CCmodal = () => {
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   fill="none"
                   // stroke-linecap="round"
@@ -128,7 +128,7 @@ const CCmodal = () => {
               />
             </div>
             <label
-              for="cvc"
+              htmlFor="cvc"
               className="text-gray-800 text-sm font-bold leading-tight tracking-normal"
             >
               CVC
@@ -145,7 +145,7 @@ const CCmodal = () => {
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   fill="none"
                   // stroke-linecap="round"
@@ -190,7 +190,7 @@ const CCmodal = () => {
                 width="20"
                 height="20"
                 viewBox="0 0 24 24"
-                stroke-width="2.5"
+                strokeWidth="2.5"
                 stroke="currentColor"
                 fill="none"
                 // stroke-linecap="round"

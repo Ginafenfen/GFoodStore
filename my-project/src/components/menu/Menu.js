@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useContext } from "react";
 import ReactContext from "../../context/react-context";
 
@@ -14,7 +14,7 @@ const Menu = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [reactCtx.products]);
 
   const handleDelete = (id) => {
     console.log("delete btn clicked in parent: Product.js");
@@ -39,15 +39,47 @@ const Menu = () => {
       .catch((error) => console.log("error", error));
   };
 
+  //==edit==//
+  const handleEdit = (id) => {
+    console.log("Edit btn clicked : editProduct.js");
+    alert(id);
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      title: reactCtx.newTitle,
+      desc: reactCtx.newDesc,
+      price: reactCtx.newPrice,
+      img: reactCtx.newImg,
+    });
+    var requestOptions = {
+      method: "PATCH",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+    fetch(`http://localhost:5001/products/edit/${id}`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+  };
+
   return (
     <>
-      {" "}
+      <button
+        className="block w-full md:w-auto text-white bg-pink-600 hover:bg-zink-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#AddMenuModal"
+      >
+        Add Menu
+      </button>
       {reactCtx.products.length > 0 && (
         <div className="grid gap-x-0 gap-y-4 grid-cols-4">
           {reactCtx.products &&
             reactCtx.products.map((product) => (
               <div className="bg-white-700" key={product.id}>
-                {" "}
                 <div>
                   <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8 ">
                     <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
@@ -94,24 +126,22 @@ const Menu = () => {
                     >
                       Delete
                     </button>
-                    {/* <h1 classNameName="text-red-700">waiting time...</h1>
-          <h1>
-            {minutes}:{seconds}
-          </h1> */}
+                    {/* //==edit==// */}
+                    <button
+                      className="block w-full md:w-auto text-white bg-pink-700 hover:pink-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-pink-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#editMenuModal"
+                      onClick={() => handleEdit(product._id)}
+                    >
+                      Edit button
+                    </button>
                   </div>
                 </div>
               </div>
             ))}
         </div>
-      )}{" "}
-      <button
-        className="block w-full md:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#AddMenuModal"
-      >
-        Add Menu
-      </button>
+      )}
     </>
   );
 };

@@ -3,21 +3,6 @@ import React from "react";
 const NavBar = () => {
   return (
     <div>
-      <div className="bg-pink-700">
-        <a
-          className="bg-pink-500 hover:brown-700 text-white font-bold py-2 px-4 rounded-full"
-          href="/login"
-        >
-          Login
-        </a>
-
-        <a
-          className="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-          href="/signup"
-        >
-          Signup
-        </a>
-      </div>
       <nav
         className="
   relative
@@ -35,6 +20,21 @@ const NavBar = () => {
   "
       >
         <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6 bg-amber-100">
+          <div className="bg-white-700 relative h-32 w-32">
+            <a
+              className="bg-pink-500 hover:brown-700 text-white font-bold py-2 px-4 rounded-full absolute inset-x-0 right-60 top-10 h-16 "
+              href="/login"
+            >
+              _
+            </a>
+
+            <a
+              className="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded-full absolute top-10 right-100 h-16 w-16 "
+              href="/signup"
+            >
+              Gfood Store
+            </a>
+          </div>
           <button
             className="
       navbar-toggler
@@ -113,6 +113,21 @@ const NavBar = () => {
                 </a>
               </li>
             </ul>
+          </div>
+          <div className="bg-white-700 relative h-32 w-32">
+            <a
+              className="bg-pink-500 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-full absolute right-50 top-10 h-16 w-20 "
+              href="/login"
+            >
+              Login
+            </a>
+
+            <a
+              className="bg-pink-500 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-full absolute top-10 right-40 h-16 w-20 "
+              href="/signup"
+            >
+              SignUp
+            </a>
           </div>
         </div>
       </nav>
