@@ -49,8 +49,6 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          {/* <Route path=":id" element={<EditProductModal />} /> */}
-          {/* <Route path="/editProductModal/:id" element={<EditProductModal />} /> */}
         </Routes>
         <Modal />
         <Modal2 />

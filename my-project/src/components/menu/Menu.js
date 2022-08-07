@@ -4,7 +4,6 @@ import ReactContext from "../../context/react-context";
 
 const Menu = () => {
   const reactCtx = useContext(ReactContext);
-  // const [products, setProducts] = useState([]);
 
   const fetchData = async () => {
     const response = await fetch("http://localhost:5001/products/displayAll");
@@ -15,10 +14,27 @@ const Menu = () => {
   useEffect(() => {
     fetchData();
   }, [reactCtx.products]);
+  //==addtocart==//
 
+  const handleAddtoCart = (id) => {
+    var raw = "";
+
+    var requestOptions = {
+      method: "PATCH",
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch(`http://localhost:5001/products/addtocart/${id}`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+
+      .catch((error) => console.log("error", error));
+
+    alert("You have added this item to cart");
+  };
   const handleDelete = (id) => {
     console.log("delete btn clicked in parent: Product.js");
-    alert(id);
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -40,41 +56,42 @@ const Menu = () => {
   };
 
   //==edit==//
-  const handleEdit = (id) => {
-    console.log("Edit btn clicked : editProduct.js");
-    alert(id);
+  // const handleEdit = (id) => {
+  //   console.log("Edit btn clicked : editProduct.js");
+  //   alert(id);
+  // };
+  //   var myHeaders = new Headers();
+  //   myHeaders.append("Content-Type", "application/json");
 
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    var raw = JSON.stringify({
-      title: reactCtx.newTitle,
-      desc: reactCtx.newDesc,
-      price: reactCtx.newPrice,
-      img: reactCtx.newImg,
-    });
-    var requestOptions = {
-      method: "PATCH",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-    fetch(`http://localhost:5001/products/edit/${id}`, requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
-  };
+  //   var raw = JSON.stringify({
+  //     title: reactCtx.newTitle,
+  //     desc: reactCtx.newDesc,
+  //     price: reactCtx.newPrice,
+  //     img: reactCtx.newImg,
+  //   });
+  //   var requestOptions = {
+  //     method: "PATCH",
+  //     headers: myHeaders,
+  //     body: raw,
+  //     redirect: "follow",
+  //   };
+  //   fetch(`http://localhost:5001/products/edit/${id}`, requestOptions)
+  //     .then((response) => response.text())
+  //     .then((result) => console.log(result))
+  //     .catch((error) => console.log("error", error));
+  // };
 
   return (
     <>
       <button
-        className="block w-full md:w-auto text-white bg-pink-600 hover:bg-zink-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+        class="border-2 border-pink-600 text-black px-32 py-3 rounded-md text-1xl font-medium hover:bg-pink-600 transition duration-300"
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#AddMenuModal"
       >
         Add Menu
       </button>
+
       {reactCtx.products.length > 0 && (
         <div className="grid gap-x-0 gap-y-4 grid-cols-4">
           {reactCtx.products &&
@@ -102,10 +119,10 @@ const Menu = () => {
                                   aria-hidden="true"
                                   className="absolute inset-0"
                                 ></span>
-                                {product.title}
+                                {/* {product.title} */}
                               </a>
                             </h3>
-                            <p className="mt-1 text-sm text-gray-500">dry</p>
+                            <p className="mt-1 text-sm text-gray-500"></p>
                           </div>
                           <p className="text-sm font-medium text-gray-900">
                             SGD {product.price}
@@ -113,28 +130,27 @@ const Menu = () => {
                         </div>
                       </div>{" "}
                     </div>
+                    {/* <div class="flex-col min-h-screen h-full w-full bg-white p-1"> */}
                     <button
-                      type="button"
-                      className="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                      class="min-w-auto w-32 h-10 bg-pink-500 p-2 rounded-xl hover:bg-red-500 transition-colors duration-50 hover:animate-pulse ease-out text-white font-semibold"
+                      onClick={() => handleAddtoCart(product._id)}
                     >
                       Add to cart
                     </button>
                     <button
-                      type="button"
-                      className="text-white bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                      class="min-w-auto w-14 h-14 bg-pink-500 p-2 rounded-full hover:bg-red-500 text-white font-semibold transition-rotation duration-300 hover:-rotate-45 ease-in-out"
                       onClick={() => handleDelete(product._id)}
                     >
-                      Delete
+                      delete
                     </button>
-                    {/* //==edit==// */}
                     <button
-                      className="block w-full md:w-auto text-white bg-pink-700 hover:pink-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-pink-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      class="min-w-auto w-14 h-14 bg-pink-500 p-2 rounded-full hover:bg-red-500 text-white font-semibold transition-rotation duration-300 hover:-rotate-45 ease-in-out"
                       type="button"
                       data-bs-toggle="modal"
                       data-bs-target="#editMenuModal"
-                      onClick={() => handleEdit(product._id)}
+                      // onClick={() => handleEdit(product._id)}
                     >
-                      Edit button
+                      edit
                     </button>
                   </div>
                 </div>

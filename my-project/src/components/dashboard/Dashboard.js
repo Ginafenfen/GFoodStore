@@ -5,11 +5,7 @@ import Test from "./Test";
 const Dashboard = () => {
   let navigate = useNavigate();
 
-  return (
-    <div>
-      <Test />
-    </div>
-  );
+  return <div>Nothing</div>;
 };
 
 export default Dashboard;

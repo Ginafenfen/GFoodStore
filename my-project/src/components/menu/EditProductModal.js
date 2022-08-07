@@ -7,7 +7,6 @@ const EditProductModal = () => {
 
   const handleEdit = (id) => {
     console.log("Edit btn clicked : editProduct.js");
-    alert(id);
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");

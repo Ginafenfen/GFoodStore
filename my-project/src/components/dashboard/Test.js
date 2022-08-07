@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useContext } from "react";
 import ReactContext from "../../context/react-context";
+import Test2 from "./Test2";
 
 const Test = () => {
   const reactCtx = useContext(ReactContext);
-  // const [products, setProducts] = useState([]);
 
   //==displayAll==//
   const fetchData = async () => {
@@ -14,7 +14,7 @@ const Test = () => {
   };
   useEffect(() => {
     fetchData();
-  }, [reactCtx.products]);
+  }, []);
 
   // const fetchData = async () => {
   //   var requestOptions = {
@@ -88,41 +88,11 @@ const Test = () => {
     fetch(`http://localhost:5001/products/addtocart/${id}`, requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
+
       .catch((error) => console.log("error", error));
+
     alert("Add to cart , please checkout");
   };
-
-  //==cart==//
-  // var raw = "";
-  const fetchData2 = async () => {
-    var requestOptions = {
-      method: "GET",
-      // body: raw,
-      redirect: "follow",
-    };
-
-    fetch("http://localhost:5001/products/cart", requestOptions)
-      .then((response) => response.text())
-      .then((result) => reactCtx.setCarts(result))
-      .catch((error) => console.log("error", error));
-    console.log(reactCtx.carts);
-  };
-
-  useEffect(() => {
-    fetchData2();
-  }, []);
-
-  // const things = reactCtx.carts.map((cart) => {
-  //   <p key=>[{cart.title}]</p>;
-  // });
-  // const carts = [1, 2, 3, 4];
-  // const lists = carts.map((cart) => <li>{cart}</li>);
-
-  // const lists = carts.map((cart, i) => <li key={i}>{cart.title}</li>);
-
-  // let things = reactCtx.carts.map((d, i) => {
-  //   return <div></div>;
-  // });
 
   return (
     <div>
@@ -162,14 +132,6 @@ const Test = () => {
             ))}
         </ul>
       )}
-      {reactCtx.carts}
-
-      {/* {reactCtx.carts.length > 0 && (
-        <div>
-          {reactCtx.carts &&
-            reactCtx.carts.map((cart) => <li key={cart._id}>{cart.title}</li>)}
-        </div>
-      )} */}
     </div>
   );
 };

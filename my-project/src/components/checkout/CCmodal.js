@@ -1,13 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const CCmodal = () => {
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
 
-  const handleClosebtn = (e) => {
-    e.preventDefault();
-    navigate("/dashboard");
-  };
+  // const handleClosebtn = (e) => {
+  //   e.preventDefault();
+  //   navigate("/dashboard");
+  // };
   return (
     <div>
       {/* <dh-component> */}
@@ -20,10 +20,10 @@ const CCmodal = () => {
         aria-hidden="true"
       >
         <div
-          role="alert"
+          // role="alert"
           className="container mx-auto w-11/12 md:w-2/3 max-w-lg"
-          data-bs-dismiss="modal"
-          aria-label="Close"
+          // data-bs-dismiss="modal"
+          // aria-label="Close"
         >
           <div className="modal-dialog relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
             <div className="modal-contentw-full flex justify-start text-gray-600 mb-3">
@@ -38,8 +38,8 @@ const CCmodal = () => {
                 fill="none"
                 // stroke-linecap="round"
                 // stroke-linejoin="round"
-                data-bs-dismiss="modal"
-                aria-label="Close"
+                // data-bs-dismiss="modal"
+                // aria-label="Close"
               >
                 <path stroke="none" d="M0 0h24v24H0z" />
                 <path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
@@ -166,7 +166,7 @@ const CCmodal = () => {
             <div className="flex items-center justify-start w-full">
               <button
                 className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm"
-                onClick={handleClosebtn}
+                // onClick={handleClosebtn}
               >
                 Submit
               </button>
@@ -182,7 +182,7 @@ const CCmodal = () => {
               className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600"
               // onclick="modalHandler()"
               aria-label="close modal"
-              role="button"
+              // role="button"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
