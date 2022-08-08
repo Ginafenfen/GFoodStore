@@ -15,7 +15,7 @@ const Modal = () => {
     var raw = JSON.stringify({
       title: newTitle,
       img: newImg,
-      desc: newDesc,
+      // desc: newDesc,
       price: newPrice,
     });
 
@@ -30,6 +30,7 @@ const Modal = () => {
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
+    alert("Note: new dishes have been added");
   };
 
   return (
@@ -104,7 +105,7 @@ const Modal = () => {
                   </div>
                 </form>
               </div>
-              <div className=" w-full flex  mb-5 shadow-md ">
+              {/* <div className=" w-full flex  mb-5 shadow-md ">
                 <form action="" className="w-full p-4">
                   <div className="mb-2">
                     <label
@@ -121,7 +122,7 @@ const Modal = () => {
                     ></textarea>
                   </div>
                 </form>
-              </div>
+              </div> */}
 
               <div className=" w-full flex  mb-5 shadow-md ">
                 <form action="" className="w-full p-4">

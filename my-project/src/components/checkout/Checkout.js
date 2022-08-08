@@ -26,22 +26,6 @@ const ViewTotal = () => {
     navigate("/dashboard");
   };
 
-  //==subtotal==//
-
-  // useEffect(() => {
-  //   const response = await fetch("http://localhost:5001/products/allcart");
-  //   const data2 = await response.json();
-  //   setSubtotal(data2);
-
-  //   let total = 0;
-  //   for (let i = 0; i < subtotal.length; i++) {
-  //     total += subtotal[i].price;
-  //     console.log(subtotal[i].price);
-  //     setPrintSubtotal(total);
-  //     console.log(total);
-  //   }
-  // })
-
   const fetchData2 = async () => {
     const response = await fetch("http://localhost:5001/products/allcart");
     const data2 = await response.json();
@@ -75,6 +59,21 @@ const ViewTotal = () => {
       .catch((error) => console.log("error", error));
 
     alert("You have removed this item from cart");
+  };
+
+  const handleCheckout = () => {
+    // var raw = "";
+
+    var requestOptions = {
+      method: "PATCH",
+      // body: raw,
+      redirect: "follow",
+    };
+
+    fetch(`http://localhost:5001/products/completed/`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
   };
 
   return (
@@ -194,6 +193,7 @@ const ViewTotal = () => {
                         data-bs-toggle="modal"
                         data-bs-target="#CCmodal"
                         type="button"
+                        onClick={handleCheckout}
                       >
                         Checkout
                       </button>

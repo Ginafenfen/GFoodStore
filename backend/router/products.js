@@ -24,7 +24,7 @@ router.put("/create", async (req, res) => {
     const createdProduct = await Product.create({
       title: req.body.title,
       price: req.body.price,
-      desc: req.body.desc,
+      // desc: req.body.desc,
       img: req.body.img,
       status: req.body.status,
     });
@@ -353,12 +353,12 @@ router.patch("/removecart/:id", async (req, res) => {
 
 //==update status to complete==//
 router.patch("/completed", async (req, res) => {
-  const response = await Product.updateOne(
+  const response = await Product.updateMany(
     {
-      title: req.body.title,
+      status: "cart",
     },
     {
-      status: req.body.status,
+      status: "completed",
     }
   );
 
@@ -367,7 +367,7 @@ router.patch("/completed", async (req, res) => {
   res.json({ status: "ok", message: "updated" });
 });
 
-router.post("/completedlist", async (req, res) => {
+router.get("/completedlist", async (req, res) => {
   const allCompletedList = await Product.find({ status: "completed" });
   res.json(allCompletedList);
 });

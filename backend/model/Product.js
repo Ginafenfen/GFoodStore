@@ -9,7 +9,6 @@ const ProductSchema = new mongoose.Schema(
     },
     desc: {
       type: String,
-      required: true,
       maxLength: 200,
     },
     img: {
