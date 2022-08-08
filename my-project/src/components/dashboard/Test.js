@@ -91,7 +91,7 @@ const Test = () => {
 
       .catch((error) => console.log("error", error));
 
-    alert("Add to cart , please checkout");
+    alert("Add to cart ");
   };
 
   return (

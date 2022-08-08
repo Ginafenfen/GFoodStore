@@ -1,13 +1,14 @@
 import React from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CCmodal = () => {
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
 
-  // const handleClosebtn = (e) => {
-  //   e.preventDefault();
-  //   navigate("/dashboard");
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Payment Successful, your order is being prepared");
+    navigate("/dashboard");
+  };
   return (
     <div>
       {/* <dh-component> */}
@@ -133,11 +134,7 @@ const CCmodal = () => {
             >
               CVC
             </label>
-            <div
-              className="relative mb-5 mt-2"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            >
+            <div className="relative mb-5 mt-2">
               <div className="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +163,9 @@ const CCmodal = () => {
             <div className="flex items-center justify-start w-full">
               <button
                 className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm"
-                // onClick={handleClosebtn}
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                onClick={handleSubmit}
               >
                 Submit
               </button>
@@ -181,7 +180,7 @@ const CCmodal = () => {
             <button
               className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600"
               // onclick="modalHandler()"
-              aria-label="close modal"
+              // aria-label="close modal"
               // role="button"
             >
               <svg

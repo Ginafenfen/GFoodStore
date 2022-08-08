@@ -6,6 +6,8 @@ import ReactContext from "../../context/react-context";
 const ViewTotal = () => {
   const reactCtx = useContext(ReactContext);
   const [cart, setCart] = useState([]);
+  const [subtotal, setSubtotal] = useState([]);
+  const [printSubtotal, setPrintSubtotal] = useState("");
   let navigate = useNavigate();
 
   const fetchData = async () => {
@@ -22,6 +24,57 @@ const ViewTotal = () => {
   const handleClosebtn = (e) => {
     e.preventDefault();
     navigate("/dashboard");
+  };
+
+  //==subtotal==//
+
+  // useEffect(() => {
+  //   const response = await fetch("http://localhost:5001/products/allcart");
+  //   const data2 = await response.json();
+  //   setSubtotal(data2);
+
+  //   let total = 0;
+  //   for (let i = 0; i < subtotal.length; i++) {
+  //     total += subtotal[i].price;
+  //     console.log(subtotal[i].price);
+  //     setPrintSubtotal(total);
+  //     console.log(total);
+  //   }
+  // })
+
+  const fetchData2 = async () => {
+    const response = await fetch("http://localhost:5001/products/allcart");
+    const data2 = await response.json();
+    setSubtotal(data2);
+  };
+
+  useEffect(() => {
+    fetchData2();
+    let total = 0;
+    for (let i = 0; i < subtotal.length; i++) {
+      total += subtotal[i].price;
+      console.log(subtotal[i].price);
+      setPrintSubtotal(total);
+      console.log(total);
+    }
+  }, [subtotal]);
+
+  const handleRemoveCart = (id) => {
+    // var raw = "";
+
+    var requestOptions = {
+      method: "PATCH",
+      // body: raw,
+      redirect: "follow",
+    };
+
+    fetch(`http://localhost:5001/products/removecart/${id}`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+
+      .catch((error) => console.log("error", error));
+
+    alert("You have removed this item from cart");
   };
 
   return (
@@ -108,6 +161,9 @@ const ViewTotal = () => {
                                             <button
                                               type="button"
                                               className="font-medium text-indigo-600 hover:text-indigo-500"
+                                              onClick={() =>
+                                                handleRemoveCart(carts._id)
+                                              }
                                             >
                                               Remove
                                             </button>
@@ -127,7 +183,7 @@ const ViewTotal = () => {
                   <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                     <div className="flex justify-between text-base font-medium text-gray-900">
                       <p>Subtotal</p>
-                      <p>$ 0</p>
+                      <p>$ {printSubtotal}</p>
                     </div>
                     <p className="mt-0.5 text-sm text-gray-500">
                       Shipping and taxes calculated at checkout.

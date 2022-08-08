@@ -33,6 +33,7 @@ const Menu = () => {
 
     alert("You have added this item to cart");
   };
+
   const handleDelete = (id) => {
     console.log("delete btn clicked in parent: Product.js");
     var myHeaders = new Headers();

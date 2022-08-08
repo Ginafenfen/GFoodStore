@@ -262,7 +262,7 @@ router.patch("/edit/:id", async (req, res) => {
 //   }
 // });
 
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/:id", auth, async (req, res) => {
   console.log("DELETE /delete path activated");
 
   try {
@@ -320,6 +320,35 @@ router.get("/cart", async (req, res) => {
       .status(400)
       .json({ status: "error", message: "failed to display all products" });
   }
+});
+
+router.get("/allcart", async (req, res) => {
+  try {
+    const allPrice = await Product.find({ status: "cart" }).select("price");
+    res.json(allPrice);
+    console.log("AllPrices");
+  } catch (error) {
+    console.log(`GET /displayPrice ${error}`);
+    res
+      .status(400)
+      .json({ status: "error", message: "failed to display product's price" });
+  }
+});
+
+//=change sttus to selection ==back to menu==//
+router.patch("/removecart/:id", async (req, res) => {
+  const response = await Product.updateOne(
+    {
+      _id: req.params.id,
+    },
+    {
+      status: "selection",
+    }
+  );
+
+  console.log(response);
+
+  res.json({ status: "ok", message: "updated" });
 });
 
 //==update status to complete==//
