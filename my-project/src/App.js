@@ -11,6 +11,7 @@ import Modal from "./components/menu/Modal";
 import Modal2 from "./components/menu/Modal2";
 import EditProductModal from "./components/menu/EditProductModal";
 import CCmodal from "./components/checkout/CCmodal";
+import Test2 from "./components/dashboard/MagicBtn";
 
 function App() {
   //==Products==//
@@ -18,6 +19,7 @@ function App() {
   const [newImg, setNewImg] = useState("");
   const [newDesc, setNewDesc] = useState("");
   const [newPrice, setNewPrice] = useState("");
+  const [newQty, setNewQty] = useState("");
 
   const [products, setProducts] = useState([]);
 
@@ -39,6 +41,8 @@ function App() {
           setProducts,
           carts,
           setCarts,
+          newQty,
+          setNewQty,
         }}
       >
         <NavBar />
@@ -49,6 +53,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/random" element={<Test2 />} />
         </Routes>
         <Modal />
         <Modal2 />

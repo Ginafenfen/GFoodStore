@@ -11,8 +11,6 @@ const CCmodal = () => {
   };
   return (
     <div>
-      {/* <dh-component> */}
-      {/* py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0  */}
       <div
         className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
         id="CCmodal"
@@ -20,6 +18,11 @@ const CCmodal = () => {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
+        {" "}
+        <span class="flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-50"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+        </span>
         <div
           // role="alert"
           className="container mx-auto w-11/12 md:w-2/3 max-w-lg"
@@ -101,7 +104,7 @@ const CCmodal = () => {
               Expiry Date
             </label>
             <div className="relative mb-5 mt-2">
-              <div className="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
+              <div className=" absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="icon icon-tabler icon-tabler-calendar-event"
@@ -135,7 +138,7 @@ const CCmodal = () => {
               CVC
             </label>
             <div className="relative mb-5 mt-2">
-              <div className="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
+              <div className=" absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="icon icon-tabler icon-tabler-info-circle"
@@ -160,9 +163,10 @@ const CCmodal = () => {
                 placeholder="MM/YY"
               />
             </div>
+
             <div className="flex items-center justify-start w-full">
               <button
-                className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm"
+                className="animate-pulse focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm"
                 data-bs-dismiss="modal"
                 aria-label="Close"
                 onClick={handleSubmit}

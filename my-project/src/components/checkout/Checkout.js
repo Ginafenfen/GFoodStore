@@ -8,6 +8,7 @@ const ViewTotal = () => {
   const [cart, setCart] = useState([]);
   const [subtotal, setSubtotal] = useState([]);
   const [printSubtotal, setPrintSubtotal] = useState("");
+  const [newQty, setNewQty] = useState(11);
   let navigate = useNavigate();
 
   const fetchData = async () => {
@@ -43,12 +44,10 @@ const ViewTotal = () => {
     }
   }, [subtotal]);
 
+  //==remove from cart==//
   const handleRemoveCart = (id) => {
-    // var raw = "";
-
     var requestOptions = {
       method: "PATCH",
-      // body: raw,
       redirect: "follow",
     };
 
@@ -62,11 +61,8 @@ const ViewTotal = () => {
   };
 
   const handleCheckout = () => {
-    // var raw = "";
-
     var requestOptions = {
       method: "PATCH",
-      // body: raw,
       redirect: "follow",
     };
 
@@ -149,12 +145,17 @@ const ViewTotal = () => {
                                               $ {carts.price}
                                             </p>
                                           </div>
-                                          <p className="mt-1 text-sm text-gray-500">
+                                          {/* <p className="mt-1 text-sm text-gray-500">
                                             desc
-                                          </p>
+                                          </p> */}
                                         </div>
                                         <div className="flex flex-1 items-end justify-between text-sm">
-                                          <p className="text-gray-500">Qty 1</p>
+                                          <p
+                                            className="text-gray-500"
+                                            onChange={() => setNewQty(carts.id)}
+                                          >
+                                            Qty: {newQty}
+                                          </p>
 
                                           <div className="flex">
                                             <button
@@ -189,7 +190,7 @@ const ViewTotal = () => {
                     </p>
                     <div className="mt-6">
                       <button
-                        className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                        className=" animate-pulse flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                         data-bs-toggle="modal"
                         data-bs-target="#CCmodal"
                         type="button"

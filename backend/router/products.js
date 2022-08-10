@@ -9,7 +9,7 @@ const { v4: uuidv4 } = require("uuid");
 const Product = require("../model/Product");
 const auth = require("../middleware/auth");
 
-const selection = "title desc price img ";
+const selection = "title desc price img qty ";
 
 //==create new product==//
 router.put("/create", async (req, res) => {
@@ -24,7 +24,7 @@ router.put("/create", async (req, res) => {
     const createdProduct = await Product.create({
       title: req.body.title,
       price: req.body.price,
-      // desc: req.body.desc,
+      qty: req.body.qty,
       img: req.body.img,
       status: req.body.status,
     });
@@ -262,7 +262,7 @@ router.patch("/edit/:id", async (req, res) => {
 //   }
 // });
 
-router.delete("/delete/:id", auth, async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
   console.log("DELETE /delete path activated");
 
   try {
@@ -382,6 +382,20 @@ router.patch("/favourite", async (req, res) => {
   res.json(newListingData);
 });
 
+router.patch("/collected/:id", async (req, res) => {
+  const response = await Product.updateOne(
+    {
+      _id: req.params.id,
+    },
+    {
+      status: "selection",
+    }
+  );
+
+  console.log(response);
+
+  res.json({ status: "ok", message: "updated" });
+});
 // UPDATE LISTING ARCHIVE STATE
 router.patch("/archive", async (req, res) => {
   const newListingArchive = await Listing.findOneAndUpdate(

@@ -85,7 +85,7 @@ const Menu = () => {
   return (
     <>
       <button
-        class="border-2 border-pink-600 text-black px-32 py-3 rounded-md text-1xl font-medium hover:bg-pink-600 transition duration-300"
+        className="absolute top-30 right-10 border-2 border-pink-600 text-black px-32 py-3 rounded-md text-1xl font-medium hover:bg-pink-600 transition duration-300 hover:animate-bounce"
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#AddMenuModal"
@@ -123,29 +123,31 @@ const Menu = () => {
                                 {/* {product.title} */}
                               </a>
                             </h3>
-                            <p className="mt-1 text-sm text-gray-500"></p>
+                            <p className="mt-1 text-sm text-gray-500">
+                              {product.qty}
+                            </p>
                           </div>
-                          <p className="text-sm font-medium text-gray-900">
+                          <p className="text-xl font-medium text-gray-900">
                             SGD {product.price}
                           </p>
                         </div>
                       </div>{" "}
                     </div>
-                    {/* <div class="flex-col min-h-screen h-full w-full bg-white p-1"> */}
+                    {/* <div className="flex-col min-h-screen h-full w-full bg-white p-1"> */}
                     <button
-                      class="min-w-auto w-32 h-10 bg-pink-500 p-2 rounded-xl hover:bg-red-500 transition-colors duration-50 hover:animate-pulse ease-out text-white font-semibold"
+                      className="min-w-auto w-32 h-10 bg-pink-500 p-2 rounded-xl hover:bg-red-500 transition-colors duration-50  ease-out text-white font-semibold hover:animate-bounce"
                       onClick={() => handleAddtoCart(product._id)}
                     >
                       Add to cart
                     </button>
                     <button
-                      class="min-w-auto w-14 h-14 bg-pink-500 p-2 rounded-full hover:bg-red-500 text-white font-semibold transition-rotation duration-300 hover:-rotate-45 ease-in-out"
+                      className="min-w-auto w-14 h-14 bg-pink-500 p-2 rounded-full hover:bg-red-500 text-white font-semibold transition-rotation duration-300 hover:-rotate-45 ease-in-out hover:animate-bounce"
                       onClick={() => handleDelete(product._id)}
                     >
                       delete
                     </button>
                     <button
-                      class="min-w-auto w-14 h-14 bg-pink-500 p-2 rounded-full hover:bg-red-500 text-white font-semibold transition-rotation duration-300 hover:-rotate-45 ease-in-out"
+                      className="min-w-auto w-14 h-14 bg-pink-500 p-2 rounded-full hover:bg-red-500 text-white font-semibold transition-rotation duration-300 hover:-rotate-45 ease-in-out hover:animate-bounce"
                       type="button"
                       data-bs-toggle="modal"
                       data-bs-target="#editMenuModal"
@@ -164,3 +166,7 @@ const Menu = () => {
 };
 
 export default Menu;
+
+// dish 1
+//Soba noodle salah
+//https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtCGJqLhM7nQM6ZqcFoOq6B2ySKatrZqM1Iw&usqp=CAU

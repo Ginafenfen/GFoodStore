@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Modal = () => {
   const [newTitle, setNewTitle] = useState("");
   const [newImg, setNewImg] = useState("");
-  const [newDesc, setNewDesc] = useState("");
+  const [newQty, setNewQty] = useState(1);
   const [newPrice, setNewPrice] = useState("");
 
   const newMenubtn = (e) => {
@@ -15,7 +15,7 @@ const Modal = () => {
     var raw = JSON.stringify({
       title: newTitle,
       img: newImg,
-      // desc: newDesc,
+      // qty: newQty,
       price: newPrice,
     });
 
@@ -105,24 +105,6 @@ const Modal = () => {
                   </div>
                 </form>
               </div>
-              {/* <div className=" w-full flex  mb-5 shadow-md ">
-                <form action="" className="w-full p-4">
-                  <div className="mb-2">
-                    <label
-                      htmlFor="comment"
-                      className="text-base text-gray-600 "
-                    >
-                      Description
-                    </label>
-                    <textarea
-                      className="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
-                      name="comment"
-                      placeholder="New title here..."
-                      onChange={(e) => setNewDesc(e.target.value)}
-                    ></textarea>
-                  </div>
-                </form>
-              </div> */}
 
               <div className=" w-full flex  mb-5 shadow-md ">
                 <form action="" className="w-full p-4">
@@ -162,6 +144,24 @@ const Modal = () => {
                   </form>
                   <br />
                 </div>
+                {/* <div className=" w-full flex  mb-5 shadow-md ">
+                  <form action="" className="w-full p-4">
+                    <div className="mb-2">
+                      <label
+                        htmlFor="comment"
+                        className="text-base text-gray-600 "
+                      >
+                        Quantity
+                      </label>
+                      <textarea
+                        className="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
+                        name="comment"
+                        placeholder="New title here..."
+                        onChange={(e) => setNewQty(e.target.value)}
+                      ></textarea>
+                    </div>
+                  </form>
+                </div> */}
               </div>
               <button
                 className="px-3 py-2 mr-2 text-sm text-blue-100 bg-blue-600 rounded  font-medium"

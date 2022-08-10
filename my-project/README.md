@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# :page_with_curl: Project 4 (Food ordering system(Menu)) :ramen:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+:computer:
 
 ## Available Scripts
 

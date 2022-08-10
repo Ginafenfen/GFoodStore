@@ -7,9 +7,8 @@ const ProductSchema = new mongoose.Schema(
       required: true,
       maxLength: 60,
     },
-    desc: {
-      type: String,
-      maxLength: 200,
+    qty: {
+      type: Number,
     },
     img: {
       type: String,

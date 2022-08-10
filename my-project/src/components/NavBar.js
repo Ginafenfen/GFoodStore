@@ -87,8 +87,8 @@ const NavBar = () => {
               href="#"
             ></a>
 
-            <ul className="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
-              <li className="nav-item p-2">
+            <ul className="navbar-nav flex flex-col pl-0 list-style-none mr-auto  ">
+              <li className="nav-item p-2 hover:animate-bounce">
                 <a
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0 text-2xl"
                   href="/dashboard"
@@ -96,7 +96,7 @@ const NavBar = () => {
                   Dashboard
                 </a>
               </li>
-              <li className="nav-item p-2">
+              <li className="nav-item p-2 hover:animate-bounce">
                 <a
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0 text-2xl"
                   href="/menu"
@@ -104,12 +104,20 @@ const NavBar = () => {
                   Menu
                 </a>
               </li>
-              <li className="nav-item p-2">
+              <li className="nav-item p-2 hover:animate-bounce">
                 <a
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0 text-2xl"
                   href="/checkout"
                 >
                   Checkout
+                </a>
+              </li>
+              <li className="nav-item p-2 hover:animate-bounce">
+                <a
+                  className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0 text-2xl"
+                  href="/random"
+                >
+                  Magic button
                 </a>
               </li>
             </ul>

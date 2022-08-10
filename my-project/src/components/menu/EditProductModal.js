@@ -14,7 +14,7 @@ const EditProductModal = () => {
     var raw = JSON.stringify({
       _id: id,
       title: reactCtx.newTitle,
-      desc: reactCtx.newDesc,
+      // qty: reactCtx.qty,
       price: reactCtx.newPrice,
       img: reactCtx.newImg,
     });
