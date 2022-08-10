@@ -159,7 +159,7 @@ router.patch("/edit/:id", async (req, res) => {
       {
         $set: {
           title: req.body.title || products.title,
-          desc: req.body.desc || products.desc,
+          qty: req.body.qty || products.qty,
           price: req.body.price || products.price,
           img: req.body.img || products.img,
           status: req.body.status || products.status,

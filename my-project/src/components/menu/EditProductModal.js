@@ -119,7 +119,8 @@ const EditProductModal = () => {
                         </div>
                       </form>
                     </div>
-                    <div className=" w-full flex  mb-5 shadow-md ">
+
+                    {/* <div className=" w-full flex  mb-5 shadow-md ">
                       <form action="" className="w-full p-4">
                         <div className="mb-2">
                           <label
@@ -138,7 +139,7 @@ const EditProductModal = () => {
                           ></textarea>
                         </div>
                       </form>
-                    </div>
+                    </div> */}
 
                     <div className=" w-full flex  mb-5 shadow-md ">
                       <form action="" className="w-full p-4">
@@ -147,7 +148,7 @@ const EditProductModal = () => {
                             htmlFor="comment"
                             className="text-base text-gray-600 "
                           >
-                            Photo
+                            Food's image
                           </label>
                           <textarea
                             className="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"

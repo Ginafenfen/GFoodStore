@@ -118,18 +118,18 @@ const Menu = () => {
                               <a href="/home">
                                 <span
                                   aria-hidden="true"
-                                  className="absolute inset-0"
+                                  className="absolute"
                                 ></span>
                                 {/* {product.title} */}
                               </a>
                             </h3>
-                            <p className="mt-1 text-sm text-gray-500">
-                              {product.qty}
+                            <p className="absolute right-28 left-28 text-sm text-gray-900">
+                              {/* QTY: {product.qty} */}
                             </p>
                           </div>
-                          <p className="text-xl font-medium text-gray-900">
+                          <h1 className="text-xl font-medium text-gray-900">
                             SGD {product.price}
-                          </p>
+                          </h1>
                         </div>
                       </div>{" "}
                     </div>

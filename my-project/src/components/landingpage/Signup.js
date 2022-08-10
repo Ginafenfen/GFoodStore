@@ -31,6 +31,7 @@ const Signup = () => {
 
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
+    // alert("New account created");
   };
 
   return (

@@ -8,7 +8,7 @@ const ViewTotal = () => {
   const [cart, setCart] = useState([]);
   const [subtotal, setSubtotal] = useState([]);
   const [printSubtotal, setPrintSubtotal] = useState("");
-  const [newQty, setNewQty] = useState(11);
+
   let navigate = useNavigate();
 
   const fetchData = async () => {
@@ -149,14 +149,24 @@ const ViewTotal = () => {
                                             desc
                                           </p> */}
                                         </div>
-                                        <div className="flex flex-1 items-end justify-between text-sm">
-                                          <p
-                                            className="text-gray-500"
-                                            onChange={() => setNewQty(carts.id)}
-                                          >
-                                            Qty: {newQty}
-                                          </p>
 
+                                        <div className="flex flex-1 items-end justify-between text-sm">
+                                          <button
+                                            type="button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#QtyModal"
+                                          >
+                                            Qty: {carts.qty}
+                                          </button>
+                                          {/* <input
+                                            type="text"
+                                            placeholder="change qty"
+                                            className="text-gray-500"
+                                            onChange={(e) =>
+                                              setNewQty(e.target.value)
+                                            }
+                                          ></input>
+                                          <button>ok</button> */}
                                           <div className="flex">
                                             <button
                                               type="button"

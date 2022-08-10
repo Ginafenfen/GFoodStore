@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Modal = () => {
   const [newTitle, setNewTitle] = useState("");
   const [newImg, setNewImg] = useState("");
-  const [newQty, setNewQty] = useState(1);
+  // const [newQty, setNewQty] = useState(1);
   const [newPrice, setNewPrice] = useState("");
 
   const newMenubtn = (e) => {
