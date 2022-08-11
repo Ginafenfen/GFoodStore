@@ -1,35 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import ReactContext from "../../context/react-context";
 
 const Test = (props) => {
   const [newTitle, setNewTitle] = useState("");
   const [newPrice, setNewPrice] = useState("");
   const [newImg, setNewImg] = useState("");
+  const reactCtx = useContext(ReactContext);
 
-  const handleEdit = (id) => {
+  const handleEdit = async (id) => {
     console.log(id);
-    console.log("Edit btn clicked : editProduct.js");
+    console.log("Edit btn clicked");
 
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify({
-      _id: props.id,
-      title: newTitle,
-      price: newPrice,
-      img: newImg,
-    });
-
-    const requestOptions = {
-      method: "PATCH",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-
-    fetch(`http://localhost:5001/products/edit/${props.id}`, requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
+    try {
+      const url = `http://localhost:5001/products/edit/${props.id}`;
+      const config = {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + reactCtx.accessToken.access,
+        },
+        body: JSON.stringify({
+          _id: props.id,
+          title: newTitle,
+          price: newPrice,
+          img: newImg,
+        }),
+        redirect: "follow",
+      };
+      const res = await fetch(url, config);
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   const handleclosebtn = (e) => {

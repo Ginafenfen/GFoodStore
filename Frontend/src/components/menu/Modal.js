@@ -1,37 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import ReactContext from "../../context/react-context";
 
 const Modal = () => {
+  const reactCtx = useContext(ReactContext);
   const [newTitle, setNewTitle] = useState("");
   const [newImg, setNewImg] = useState("");
   // const [newQty, setNewQty] = useState(1);
   const [newPrice, setNewPrice] = useState("");
 
-  const newMenubtn = (e) => {
-    e.preventDefault();
+  const newMenubtn = async () => {
+    console.log("clicked");
 
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    var raw = JSON.stringify({
-      title: newTitle,
-      img: newImg,
-      // qty: newQty,
-      price: newPrice,
-    });
-
-    var requestOptions = {
-      method: "PUT",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-
-    fetch("http://localhost:5001/products/create", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
-    alert("Note: new dishes have been added");
+    try {
+      const url = "http://localhost:5001/products/create";
+      const config = {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + reactCtx.accessToken.access,
+        },
+        body: JSON.stringify({
+          title: newTitle,
+          img: newImg,
+          price: newPrice,
+        }),
+        redirect: "follow",
+      };
+      const res = await fetch(url, config);
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log("error", error);
+    }
   };
+  //   var myHeaders = new Headers();
+  //   myHeaders.append("Content-Type", "application/json");
+
+  //   var raw = JSON.stringify({
+  //     title: newTitle,
+  //     img: newImg,
+  //     // qty: newQty,
+  //     price: newPrice,
+  //   });
+
+  //   var requestOptions = {
+  //     method: "PUT",
+  //     headers: myHeaders,
+  //     body: raw,
+  //     redirect: "follow",
+  //   };
+
+  //   fetch("http://localhost:5001/products/create", requestOptions)
+  //     .then((response) => response.text())
+  //     .then((result) => console.log(result))
+  //     .catch((error) => console.log("error", error));
+  //   alert("Note: new dishes have been added");
+  // };
 
   return (
     <div>

@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema(
     },
     isAdmin: {
       type: Boolean,
-      default: true,
+      default: false,
       required: true,
     },
     createdAt: {
@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema(
       default: () => Date.now(),
     },
   },
-  { collection: "User" } // storage the username and hash=pw
+  { collection: "User" }
 );
 
 const User = mongoose.model("User", UserSchema);

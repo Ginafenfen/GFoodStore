@@ -26,6 +26,9 @@ function App() {
 
   const [carts, setCarts] = useState([]);
 
+  const storedLogin = JSON.parse(localStorage.getItem("loginAccess"));
+  const [accessToken, setAccessToken] = useState(storedLogin);
+
   return (
     <div>
       <ReactContext.Provider
@@ -42,6 +45,8 @@ function App() {
           setCarts,
           newQty,
           setNewQty,
+          accessToken,
+          setAccessToken,
         }}
       >
         <NavBar />

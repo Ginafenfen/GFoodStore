@@ -1,23 +1,29 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import ReactContext from "../../context/react-context";
 
 const Login = () => {
+  const reactCtx = useContext(ReactContext);
   const [emailReg, setEmailReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
+
+  // const storedLogin = JSON.parse(localStorage.getItem("loginAccess"));
+  // const [accessToken, setAccessToken] = useState(storedLogin);
 
   const navigate = useNavigate();
   const handlelogin = (e) => {
     e.preventDefault();
 
-    var myHeaders = new Headers();
+    const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({
+    const raw = JSON.stringify({
       email: emailReg,
       password: passwordReg,
     });
 
-    var requestOptions = {
+    const requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: raw,
@@ -26,7 +32,15 @@ const Login = () => {
 
     fetch("http://localhost:5001/users/login", requestOptions)
       .then((response) => response.text())
-      .then((result) => console.log(result));
+      .then((result) => {
+        console.log(result);
+        // store into localstorage
+        localStorage.setItem("loginAccess", result);
+
+        // set state
+        reactCtx.setAccessToken(result);
+      });
+
     navigate("/menu").catch((error) => console.log("error", error));
   };
 

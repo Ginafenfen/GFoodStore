@@ -42,15 +42,6 @@ router.put("/create", async (req, res) => {
   }
 });
 
-// {
-//   "email":"gina_gina@hotmail.com",
-//   "password":"123456",
-//   "username":"Gina",
-//   "phone":92227799,
-//   "idAdmin":true
-
-// }
-
 //==login==//
 router.post("/login", async (req, res) => {
   try {

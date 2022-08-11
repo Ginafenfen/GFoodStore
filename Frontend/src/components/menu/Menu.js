@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ReactContext from "../../context/react-context";
 
 import EditForm from "./EditForm";
@@ -39,26 +38,26 @@ const Menu = () => {
     alert("You have added this item to cart");
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     console.log("delete btn clicked in parent: Product.js");
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({
-      // id: id,
-    });
-
-    var requestOptions = {
-      method: "DELETE",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-
-    fetch(`http://localhost:5001/products/delete/${id}`, requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
+    try {
+      const url = `http://localhost:5001/products/delete/${id}`;
+      const config = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + reactCtx.accessToken.access,
+        },
+        body: JSON.stringify({ id: id }),
+        redirect: "follow",
+      };
+      const res = await fetch(url, config);
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   //==edit==//
@@ -67,28 +66,6 @@ const Menu = () => {
     setShowModal(true);
     setoutOfService(true);
   };
-  //   var myHeaders = new Headers();
-  //   myHeaders.append("Content-Type", "application/json");
-
-  //   var raw = JSON.stringify({
-  //     _id: id,
-  //     title: newTitle,
-  //     // qty: reactCtx.qty,
-  //     // price: reactCtx.newPrice,
-  //     // img: reactCtx.newImg,
-  //   });
-
-  //   var requestOptions = {
-  //     method: "PATCH",
-  //     headers: myHeaders,
-  //     body: raw,
-  //     redirect: "follow",
-  //   };
-  //   fetch(`http://localhost:5001/products/edit/${id}`, requestOptions)
-  //     .then((response) => response.text())
-  //     .then((result) => console.log(result))
-  //     .catch((error) => console.log("error", error));
-  // };
 
   return (
     <>
