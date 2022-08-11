@@ -351,6 +351,31 @@ router.patch("/removecart/:id", async (req, res) => {
   res.json({ status: "ok", message: "updated" });
 });
 
+//==change the qty==//
+router.patch("/quantity/:id", async (req, res) => {
+  try {
+    const products = await Product.find({ _id: req.params.id });
+    await Product.updateOne(
+      { _id: req.params.id },
+      {
+        $set: {
+          qty: req.body.qty || products.qty,
+        },
+      },
+      { new: true }
+    );
+    res
+      .status(200)
+      .json({ status: "ok!", message: `Quantity changed to ${req.body.qty}.` });
+  } catch (error) {
+    console.log(error);
+    return res.status(401).json({
+      status: "error",
+      message: "An error occured.",
+    });
+  }
+});
+
 //==update status to complete==//
 router.patch("/completed", async (req, res) => {
   const response = await Product.updateMany(
@@ -389,6 +414,7 @@ router.patch("/collected/:id", async (req, res) => {
     },
     {
       status: "selection",
+      qty: 1,
     }
   );
 

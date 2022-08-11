@@ -1,9 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import ReactContext from "../../context/react-context";
 
+import EditForm from "./EditForm";
+
 const Menu = () => {
   const reactCtx = useContext(ReactContext);
+  const [showModal, setShowModal] = useState(false);
+
+  const [outOfService, setoutOfService] = useState(false);
 
   const fetchData = async () => {
     const response = await fetch("http://localhost:5001/products/displayAll");
@@ -40,7 +45,7 @@ const Menu = () => {
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-      id: id,
+      // id: id,
     });
 
     var requestOptions = {
@@ -57,19 +62,22 @@ const Menu = () => {
   };
 
   //==edit==//
-  // const handleEdit = (id) => {
-  //   console.log("Edit btn clicked : editProduct.js");
-  //   alert(id);
-  // };
+  const handleEdit = (id) => {
+    console.log(`Edit btn clicked : editProduct.js ${id}`);
+    setShowModal(true);
+    setoutOfService(true);
+  };
   //   var myHeaders = new Headers();
   //   myHeaders.append("Content-Type", "application/json");
 
   //   var raw = JSON.stringify({
-  //     title: reactCtx.newTitle,
-  //     desc: reactCtx.newDesc,
-  //     price: reactCtx.newPrice,
-  //     img: reactCtx.newImg,
+  //     _id: id,
+  //     title: newTitle,
+  //     // qty: reactCtx.qty,
+  //     // price: reactCtx.newPrice,
+  //     // img: reactCtx.newImg,
   //   });
+
   //   var requestOptions = {
   //     method: "PATCH",
   //     headers: myHeaders,
@@ -84,6 +92,13 @@ const Menu = () => {
 
   return (
     <>
+      {outOfService ? (
+        <>
+          <h1 className="transition delay-200 animate-bounce absolute inset-x-80 text-red-700 text-6xl">
+            Under maintenance
+          </h1>
+        </>
+      ) : null}
       <button
         className="absolute top-30 right-10 border-2 border-pink-600 text-black px-32 py-3 rounded-md text-1xl font-medium hover:bg-pink-600 transition duration-300 hover:animate-bounce"
         type="button"
@@ -123,9 +138,7 @@ const Menu = () => {
                                 {/* {product.title} */}
                               </a>
                             </h3>
-                            <p className="absolute right-28 left-28 text-sm text-gray-900">
-                              {/* QTY: {product.qty} */}
-                            </p>
+                            <p className="absolute right-28 left-28 text-sm text-gray-900"></p>
                           </div>
                           <h1 className="text-xl font-medium text-gray-900">
                             SGD {product.price}
@@ -146,17 +159,29 @@ const Menu = () => {
                     >
                       delete
                     </button>
+
                     <button
                       className="min-w-auto w-14 h-14 bg-pink-500 p-2 rounded-full hover:bg-red-500 text-white font-semibold transition-rotation duration-300 hover:-rotate-45 ease-in-out hover:animate-bounce"
-                      type="button"
-                      data-bs-toggle="modal"
-                      data-bs-target="#editMenuModal"
-                      // onClick={() => handleEdit(product._id)}
+                      // type="button"
+                      // data-bs-toggle="modal"
+                      // data-bs-target="#editMenuModal"
+                      onClick={() => handleEdit(product._id)}
                     >
                       edit
                     </button>
                   </div>
                 </div>
+                {/* //==edit form==// */}
+                {showModal ? (
+                  <>
+                    <EditForm
+                      handleEdit={handleEdit}
+                      // setNewTitle={setNewTitle}
+                      id={product._id}
+                    />
+                  </>
+                ) : null}
+                {/* //==end form==// */}
               </div>
             ))}
         </div>

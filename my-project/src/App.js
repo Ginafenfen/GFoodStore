@@ -18,7 +18,7 @@ function App() {
   //==Products==//
   const [newTitle, setNewTitle] = useState("");
   const [newImg, setNewImg] = useState("");
-  const [newDesc, setNewDesc] = useState("");
+  // const [newDesc, setNewDesc] = useState("");
   const [newPrice, setNewPrice] = useState("");
   const [newQty, setNewQty] = useState("");
 
@@ -34,8 +34,6 @@ function App() {
           setNewTitle,
           newImg,
           setNewImg,
-          newDesc,
-          setNewDesc,
           newPrice,
           setNewPrice,
           products,
@@ -48,7 +46,7 @@ function App() {
       >
         <NavBar />
         <Routes>
-          <Route path="/" element={<Navigate replace to="/dashboard" />} />
+          <Route path="/" element={<Navigate replace to="/menu" />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/menu" element={<Menu />} />
@@ -60,7 +58,7 @@ function App() {
         <Modal2 />
         <EditProductModal />
         <CCmodal />
-        <QtyModal />
+        {/* <QtyModal /> */}
       </ReactContext.Provider>
     </div>
   );

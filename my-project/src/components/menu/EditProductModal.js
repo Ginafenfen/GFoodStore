@@ -1,29 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import ReactContext from "../../context/react-context";
 
 const EditProductModal = () => {
   const reactCtx = useContext(ReactContext);
+  const [newTitle, setNewTitle] = useState("");
+  const [newImg, setNewImg] = useState("");
+  const [newPrice, setNewPrice] = useState("");
+  const [newQty, setNewQty] = useState("");
 
   const handleEdit = (id) => {
+    console.log(id);
     console.log("Edit btn clicked : editProduct.js");
 
-    var myHeaders = new Headers();
+    const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({
+    const raw = JSON.stringify({
       _id: id,
-      title: reactCtx.newTitle,
+      title: newTitle,
       // qty: reactCtx.qty,
-      price: reactCtx.newPrice,
-      img: reactCtx.newImg,
+      // price: reactCtx.newPrice,
+      // img: reactCtx.newImg,
     });
-    var requestOptions = {
+
+    const requestOptions = {
       method: "PATCH",
       headers: myHeaders,
       body: raw,
       redirect: "follow",
     };
+
     fetch(`http://localhost:5001/products/edit/${id}`, requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
@@ -50,7 +57,7 @@ const EditProductModal = () => {
               key={product._id}
               className="modal fade   fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
               id="editMenuModal"
-              tabIndex="-1"
+              tabIndex="-2"
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
             >
@@ -63,6 +70,7 @@ const EditProductModal = () => {
                     >
                       Edit
                     </h5>
+                    <h5>{product._id}</h5>
                     <button
                       type="button"
                       className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
@@ -73,7 +81,7 @@ const EditProductModal = () => {
                     <div
                       className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
                       id="exampleModalScrollable"
-                      tabIndex="-1"
+                      tabIndex="-2"
                       aria-labelledby="exampleModalScrollableLabel"
                       aria-hidden="true"
                     >
@@ -112,9 +120,7 @@ const EditProductModal = () => {
                             className="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
                             name="comment"
                             placeholder="New title here..."
-                            onChange={(e) =>
-                              reactCtx.setNewTitle(e.target.value)
-                            }
+                            onChange={(e) => setNewTitle(e.target.value)}
                           ></textarea>
                         </div>
                       </form>
@@ -184,7 +190,9 @@ const EditProductModal = () => {
                     </div>
                     <button
                       className="px-3 py-2 mr-2 text-sm text-blue-100 bg-blue-600 rounded  font-medium"
-                      onClick={() => handleEdit(product._id)}
+                      onClick={() => {
+                        handleEdit(product._id);
+                      }}
                     >
                       Save
                     </button>

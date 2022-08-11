@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import ReactContext from "../../context/react-context";
+import QtyModal from "./QtyModal";
 
 const ViewTotal = () => {
   const reactCtx = useContext(ReactContext);
   const [cart, setCart] = useState([]);
   const [subtotal, setSubtotal] = useState([]);
   const [printSubtotal, setPrintSubtotal] = useState("");
+  const [qtyModal, setQtyModal] = useState(false);
 
   let navigate = useNavigate();
 
@@ -70,6 +72,11 @@ const ViewTotal = () => {
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
+  };
+
+  const handleQtyChange = (id) => {
+    console.log(`QTY btn clicked : ${id}`);
+    setQtyModal(true);
   };
 
   return (
@@ -136,13 +143,12 @@ const ViewTotal = () => {
                                           className="h-full w-full object-cover object-center"
                                         />
                                       </div>
-
                                       <div className="ml-4 flex flex-1 flex-col">
                                         <div>
                                           <div className="flex justify-between text-base font-medium text-gray-900">
                                             <h3> {carts.title}</h3>
                                             <p className="ml-4">
-                                              $ {carts.price}
+                                              ${carts.price}/ each
                                             </p>
                                           </div>
                                           {/* <p className="mt-1 text-sm text-gray-500">
@@ -153,21 +159,26 @@ const ViewTotal = () => {
                                         <div className="flex flex-1 items-end justify-between text-sm">
                                           <button
                                             type="button"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#QtyModal"
+                                            // data-bs-toggle="modal"
+                                            // data-bs-target="#QtyModal"
+                                            onClick={() =>
+                                              handleQtyChange(carts._id)
+                                            }
                                           >
                                             Qty: {carts.qty}
                                           </button>
-                                          {/* <input
-                                            type="text"
-                                            placeholder="change qty"
-                                            className="text-gray-500"
-                                            onChange={(e) =>
-                                              setNewQty(e.target.value)
-                                            }
-                                          ></input>
-                                          <button>ok</button> */}
+                                          <br />
+                                          {qtyModal ? (
+                                            <>
+                                              <QtyModal id={carts._id} />
+                                            </>
+                                          ) : null}
                                           <div className="flex">
+                                            {/* Total:${carts.price * carts.qty} */}
+                                            <br />
+                                            <br />
+                                            <br />
+                                            <br />
                                             <button
                                               type="button"
                                               className="font-medium text-indigo-600 hover:text-indigo-500"
@@ -179,7 +190,7 @@ const ViewTotal = () => {
                                             </button>
                                           </div>
                                         </div>
-                                      </div>
+                                      </div>{" "}
                                     </li>
                                   </ul>
                                 </li>
@@ -189,6 +200,8 @@ const ViewTotal = () => {
                       </div>
                     </div>
                   </div>
+                  {/* problem here: */}
+                  {/* {carts.price * carts.qty}.map(subtotal) */}
 
                   <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                     <div className="flex justify-between text-base font-medium text-gray-900">

@@ -35,6 +35,7 @@ const NavBar = () => {
               Gfood Store
             </a>
           </div>
+          <span className="animate-pulse"> 👩🏻‍🍳</span>
           <button
             className="
       navbar-toggler
@@ -93,7 +94,7 @@ const NavBar = () => {
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0 text-2xl"
                   href="/dashboard"
                 >
-                  Dashboard
+                  Dashboard <span className="animate-pulse">🍲 🍛</span>
                 </a>
               </li>
               <li className="nav-item p-2 hover:animate-bounce">
@@ -101,7 +102,7 @@ const NavBar = () => {
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0 text-2xl"
                   href="/menu"
                 >
-                  Menu
+                  Menu <span className="animate-pulse">🍝 🍜 </span>
                 </a>
               </li>
               <li className="nav-item p-2 hover:animate-bounce">
@@ -109,7 +110,7 @@ const NavBar = () => {
                   className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0 text-2xl"
                   href="/checkout"
                 >
-                  Checkout
+                  Checkout <span className="animate-pulse">🍝 🍜 🍲 🍛</span>
                 </a>
               </li>
               <li className="nav-item p-2 hover:animate-bounce">
