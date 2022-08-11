@@ -3,7 +3,7 @@
 :computer:
 
 This is an app for a
-<img src="./forReadme/image1.png"/>
+<img src="./Frontend/forReadme/image1.png"/>
 
 ## Technologies Used
 
