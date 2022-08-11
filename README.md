@@ -3,7 +3,7 @@
 :computer:
 
 This is an app for a
-"./image1.png
+<img src="./image1.png"/>
 
 ## Technologies Used
 
