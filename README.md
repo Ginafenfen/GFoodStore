@@ -31,6 +31,7 @@ MERN - Front-end React Express :electron: - Back-end MongoDB - Database Mongoose
 1. edit / remove menu
 2. add new dishes
 
+\*using status:"selection" => "cart" => "completed" done.
 <img src="./Frontend/forReadme/image4.png"/>
 
 ### Unsolved problems
