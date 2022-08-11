@@ -95,7 +95,7 @@ const Menu = () => {
       {outOfService ? (
         <>
           <h1 className="transition delay-200 animate-bounce absolute inset-x-80 text-red-700 text-6xl">
-            Under maintenance
+            ⚠️ Under maintenance
           </h1>
         </>
       ) : null}
@@ -176,8 +176,9 @@ const Menu = () => {
                   <>
                     <EditForm
                       handleEdit={handleEdit}
-                      // setNewTitle={setNewTitle}
                       id={product._id}
+                      setShowModal={setShowModal}
+                      setoutOfService={setoutOfService}
                     />
                   </>
                 ) : null}
@@ -195,3 +196,12 @@ export default Menu;
 // dish 1
 //Soba noodle salah
 //https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtCGJqLhM7nQM6ZqcFoOq6B2ySKatrZqM1Iw&usqp=CAU
+
+// dish 2
+// Tomato egg noodle
+// https://redhousespice.com/wp-content/uploads/2021/06/Chinese-tomato-egg-noodle-soup-scaled.jpg
+
+// dish 3
+
+// fried noodle
+// https://tiffycooks.com/wp-content/uploads/2021/09/Screen-Shot-2021-09-21-at-5.21.37-PM.png

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
   let navigate = useNavigate();
   const [completed, setCompleted] = useState([]);
-  const [seconds, setSeconds] = useState(5);
+  const [seconds, setSeconds] = useState(15);
   const [minutes, setMinutes] = useState(0);
   const [countdown, setCountdown] = useState(false);
 
@@ -59,8 +59,14 @@ const Dashboard = () => {
     alert("Thank you for your order");
   };
 
+  const handleclick = (e) => {
+    e.preventDefault();
+    fetchData();
+  };
+
   return (
     <div>
+      <button onClick={handleclick}>(*૭^⤙^)૭ </button>
       {completed.length > 0 && (
         <div class="grid gap-x-0 gap-y-4 grid-cols-4">
           {completed &&
@@ -83,7 +89,8 @@ const Dashboard = () => {
                     <img src={list.img} />
                     <h2>{list.title}</h2>
                   </div>
-                  <p class="my-4 text-center text-xl text-gray-500">
+                  <p class="my-4 text-center text-xl text-gray-500 ">
+                    <div className="animate-spin ease duration-300"> ⌛</div>
                     Waiting time... {minutes}:{seconds}
                   </p>
                   <div class="space-x-4 bg-gray-100 py-4 text-center">
@@ -102,7 +109,6 @@ const Dashboard = () => {
             ))}
         </div>
       )}
-      <button>(*૭^⤙^)૭ </button>
     </div>
   );
 };
