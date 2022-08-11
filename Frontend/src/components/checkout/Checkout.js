@@ -26,7 +26,7 @@ const ViewTotal = () => {
   //==close==//
   const handleClosebtn = (e) => {
     e.preventDefault();
-    navigate("/dashboard");
+    navigate("/menu");
   };
 
   const fetchData2 = async () => {
@@ -224,13 +224,13 @@ const ViewTotal = () => {
                     </div>
                     <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                       <p>
-                        or
+                        or <span></span>
                         <button
                           type="button"
                           className="font-medium text-indigo-600 hover:text-indigo-500"
                           onClick={handleClosebtn}
                         >
-                          Continue Shopping
+                          back to Menu
                           <span aria-hidden="true"> &rarr;</span>
                         </button>
                       </p>

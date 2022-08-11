@@ -170,7 +170,7 @@ router.delete("/delete/:id", auth, async (req, res) => {
       console.log(error);
       return res.status(401).json({
         status: "error",
-        message: "Unauthorised to edit.",
+        message: "Unauthorised to delete.",
       });
     }
   } catch (error) {
@@ -294,15 +294,7 @@ router.get("/completedlist", async (req, res) => {
   res.json(allCompletedList);
 });
 
-router.patch("/favourite", async (req, res) => {
-  // both admin and users can update listing favourite count
-  const newListingData = await Listing.findOneAndUpdate(
-    { _id: req.body.id },
-    { $inc: { favouritesCount: +1 } },
-    { new: true }
-  );
-  res.json(newListingData);
-});
+//
 
 router.patch("/collected/:id", async (req, res) => {
   const response = await Product.updateOne(
@@ -320,14 +312,14 @@ router.patch("/collected/:id", async (req, res) => {
   res.json({ status: "ok", message: "updated" });
 });
 // UPDATE LISTING ARCHIVE STATE
-router.patch("/archive", async (req, res) => {
-  const newListingArchive = await Listing.findOneAndUpdate(
-    { _id: req.body.id },
-    { isArchive: req.body.isArchive },
-    { new: true }
-  );
-  res.json(newListingArchive);
-});
+// router.patch("/archive", async (req, res) => {
+//   const newListingArchive = await Listing.findOneAndUpdate(
+//     { _id: req.body.id },
+//     { isArchive: req.body.isArchive },
+//     { new: true }
+//   );
+//   res.json(newListingArchive);
+// });
 
 module.exports = router;
 
@@ -354,3 +346,13 @@ module.exports = router;
 // //     });
 // //   }
 // // });
+
+// router.patch("/favourite", async (req, res) => {
+//   // both admin and users can update listing favourite count
+//   const newListingData = await Listing.findOneAndUpdate(
+//     { _id: req.body.id },
+//     { $inc: { favouritesCount: +1 } },
+//     { new: true }
+//   );
+//   res.json(newListingData);
+// });

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
   let navigate = useNavigate();
   const [completed, setCompleted] = useState([]);
-  const [seconds, setSeconds] = useState(15);
+  const [seconds, setSeconds] = useState(30);
   const [minutes, setMinutes] = useState(0);
   const [countdown, setCountdown] = useState(false);
 

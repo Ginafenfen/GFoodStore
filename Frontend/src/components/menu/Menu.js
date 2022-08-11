@@ -37,7 +37,7 @@ const Menu = () => {
 
     alert("You have added this item to cart");
   };
-
+  //==delete==//
   const handleDelete = async (id) => {
     console.log("delete btn clicked in parent: Product.js");
 

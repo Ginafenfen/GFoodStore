@@ -9,7 +9,7 @@ import Signup from "./components/landingpage/Signup";
 import Dashboard from "./components/dashboard/Dashboard";
 import Modal from "./components/menu/Modal";
 import Modal2 from "./components/menu/Modal2";
-import QtyModal from "./components/checkout/QtyModal";
+
 import EditProductModal from "./components/menu/EditProductModal";
 import CCmodal from "./components/checkout/CCmodal";
 import Test2 from "./components/dashboard/MagicBtn";
@@ -63,7 +63,6 @@ function App() {
         <Modal2 />
         <EditProductModal />
         <CCmodal />
-        {/* <QtyModal /> */}
       </ReactContext.Provider>
     </div>
   );
