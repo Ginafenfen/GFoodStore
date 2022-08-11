@@ -10,3 +10,7 @@ This is an app for a
 MERN - Front-end React Express - Back-end MongoDB - Database Mongoose - Schema JSON Web Token - Authentication
 
 ## Getting Started
+
+User = consumer
+
+Admin = owner
